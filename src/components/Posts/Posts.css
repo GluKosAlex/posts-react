@@ -1,0 +1,11 @@
+.posts {
+  @apply flex flex-col gap-4
+}
+
+.posts__title {
+  @apply pt-6 text-4xl font-medium
+}
+
+.posts__list {
+  @apply flex flex-col gap-6
+}

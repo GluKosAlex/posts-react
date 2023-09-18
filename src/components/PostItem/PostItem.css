@@ -1,0 +1,19 @@
+.post {
+  @apply flex justify-between p-5 border-y-2;
+  min-height: 80px;
+}
+
+.post__content {
+   @apply flex flex-col gap-2;
+}
+
+.post__title {
+ @apply text-xl mb-2;
+}
+
+.post__description {
+}
+
+.post__btn {
+  @apply self-start;
+}
