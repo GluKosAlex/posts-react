@@ -15,10 +15,14 @@ export default function HomePage() {
     setPosts([...posts, post]);
   };
 
+  function removePost(post) {
+    setPosts(posts.filter(item => item.id !== post.id))
+  }
+
   return (
     <main className='max-w-screen-md m-auto flex flex-col'>
       <PostForm create={createPost} />
-      <Posts posts={posts} title='Posts about JS' />
+      <Posts remove={removePost} posts={posts} title='Posts about JS' />
     </main>
   );
 }

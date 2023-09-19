@@ -2,7 +2,7 @@ import React from 'react';
 import Button from '../ui/button/Button';
 import './PostItem.css';
 
-export default function PostItem({ post, position }) {
+export default function PostItem({ post, position, removePost }) {
   return (
     <li className='post'>
       <div className='post__content'>
@@ -11,7 +11,9 @@ export default function PostItem({ post, position }) {
         </h3>
         <p className='post__description'>{post.body}</p>
       </div>
-      <Button className='post__btn'>Delete</Button>
+      <Button onClick={() => {removePost(post)}} className='post__btn'>
+        Delete
+      </Button>
     </li>
   );
 }
