@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import Input from '../ui/input/Input';
-import Button from '../ui/button/Button';
+import MyInput from '../ui/input/MyInput';
+import MyButton from '../ui/button/MyButton';
+import './PostForm.css'
 
 export default function PostForm({ create }) {
   const [post, setPost] = useState({ title: '', body: '' });
@@ -15,18 +16,18 @@ export default function PostForm({ create }) {
   }
 
   return (
-    <form onSubmit={submitHandler} className='flex flex-col gap-2 my-4'>
-      <Input
+    <form onSubmit={submitHandler} className='form'>
+      <MyInput
         value={post.title}
         onChange={e => setPost({ ...post, title: e.target.value })}
         placeholder='post title'
       />
-      <Input
+      <MyInput
         value={post.body}
         onChange={e => setPost({ ...post, body: e.target.value })}
         placeholder='post text'
       />
-      <Button className='self-end'>Save post</Button>
+      <MyButton className='self-end'>Save post</MyButton>
     </form>
   );
 }

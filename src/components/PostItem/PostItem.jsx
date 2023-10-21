@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from '../ui/button/Button';
+import MyButton from '../ui/button/MyButton';
 import './PostItem.css';
 
 export default function PostItem({ post, position, removePost }) {
@@ -11,9 +11,9 @@ export default function PostItem({ post, position, removePost }) {
         </h3>
         <p className='post__description'>{post.body}</p>
       </div>
-      <Button onClick={() => {removePost(post)}} className='post__btn'>
+      <MyButton onClick={() => {removePost(post)}} className='post__btn'>
         Delete
-      </Button>
+      </MyButton>
     </li>
   );
 }

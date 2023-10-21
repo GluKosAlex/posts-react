@@ -1,0 +1,9 @@
+.input {
+  @apply text-base border-2 w-full px-2 py-1 rounded-sm bg-transparent border-gray-800
+}
+
+@media (prefers-color-scheme: dark) {
+  .input {
+    @apply  border-white
+  }
+}

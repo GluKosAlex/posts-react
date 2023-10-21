@@ -1,5 +1,5 @@
 .post {
-  @apply flex justify-between p-5 border-y-2;
+  @apply flex justify-between p-5 border-y-2 border-gray-800;
   min-height: 80px;
 }
 
@@ -16,4 +16,10 @@
 
 .post__btn {
   @apply self-start;
+}
+
+@media (prefers-color-scheme: dark) {
+  .post {
+    @apply border-white;
+  }
 }
