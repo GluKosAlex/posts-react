@@ -5,6 +5,7 @@ import Posts from '@/components/Posts/Posts';
 import PostForm from '@/components/PostForm/PostForm';
 import MySelect from '@/components/ui/select/MySelect';
 import MyInput from '@/components/ui/input/MyInput';
+import PostFilter from './../components/PostFilter/PostFilter';
 
 export default function HomePage() {
   const [posts, setPosts] = useState([
@@ -13,20 +14,19 @@ export default function HomePage() {
     { id: 3, title: 'BB 3', body: 'HH JavaScript - programming language' }
   ]);
 
-  const [sortOption, setSortOption] = useState('');
-  const [searchQuery, setSearchQuery] = useState('');
+  const [filter, setFilter] = useState({ sort: '', query: '' });
 
   const sortedPosts = useMemo(() => {
-    if (sortOption) {
-      return [...posts].sort((a, b) => a[sortOption].localeCompare(b[sortOption]));
+    if (filter.sort) {
+      return [...posts].sort((a, b) => a[filter.sort].localeCompare(b[filter.sort]));
     } else {
       return posts;
     }
-  }, [sortOption, posts]);
+  }, [filter.sort, posts]);
 
   const sortedAndSearchedPosts = useMemo(() => {
-    return sortedPosts.filter(item => item.title.toLowerCase().includes(searchQuery.toLowerCase()));
-  }, [searchQuery, sortedPosts]);
+    return sortedPosts.filter(item => item.title.toLowerCase().includes(filter.query.toLowerCase()));
+  }, [filter.query, sortedPosts]);
 
   function createPost(post) {
     setPosts([...posts, post]);
@@ -36,27 +36,10 @@ export default function HomePage() {
     setPosts(posts.filter(item => item.id !== post.id));
   }
 
-  function sortPostsBy(option) {
-    setSortOption(option);
-  }
-
   return (
     <main className='max-w-screen-md m-auto flex flex-col'>
       <PostForm create={createPost} />
-      <MyInput
-        value={searchQuery}
-        onChange={evt => setSearchQuery(evt.target.value)}
-        placeholder='Поиск...'
-      />
-      <MySelect
-        value={sortOption}
-        onChange={sortPostsBy}
-        defaultOption={'Сортировка'}
-        options={[
-          { text: 'По названию', value: 'title' },
-          { text: 'По тексту', value: 'body' }
-        ]}
-      />
+      <PostFilter filter={filter} setFilter={setFilter} />
       {sortedAndSearchedPosts.length ? (
         <Posts remove={removePost} posts={sortedAndSearchedPosts} title='Posts about JS' />
       ) : (
