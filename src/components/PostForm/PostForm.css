@@ -1,3 +1,11 @@
 .form {
-  @apply flex flex-col gap-2 my-4
+  @apply flex flex-col gap-2 m-8;
+}
+
+.form__input {
+  @apply text-black border-black;
+}
+
+.form__btn {
+  @apply border-black text-black;
 }

@@ -4,6 +4,8 @@ import { useMemo, useState } from 'react';
 import Posts from '@/components/Posts/Posts';
 import PostForm from '@/components/PostForm/PostForm';
 import PostFilter from './../components/PostFilter/PostFilter';
+import MyModal from './../components/ui/modal/MyModal';
+import MyButton from './../components/ui/button/MyButton';
 
 export default function HomePage() {
   const [posts, setPosts] = useState([
@@ -13,6 +15,8 @@ export default function HomePage() {
   ]);
 
   const [filter, setFilter] = useState({ sort: '', query: '' });
+
+  const [isAddPostModalOpen, setIsAddPostModalOpen] = useState(false);
 
   const sortedPosts = useMemo(() => {
     if (filter.sort) {
@@ -28,16 +32,29 @@ export default function HomePage() {
 
   function createPost(post) {
     setPosts([...posts, post]);
+
+    setIsAddPostModalOpen(false);
   }
 
   function removePost(post) {
     setPosts(posts.filter((item) => item.id !== post.id));
   }
 
+  function openAddPostModal() {
+    setIsAddPostModalOpen(true);
+  }
+
   return (
     <main className='max-w-screen-md m-auto flex flex-col'>
-      <PostForm create={createPost} />
+      <MyButton onClick={openAddPostModal} className='my-6 mx-0'>
+        Add post
+      </MyButton>
+      <MyModal onClick={() => setIsAddPostModalOpen(false)} isOpen={isAddPostModalOpen}>
+        <PostForm create={createPost} />
+      </MyModal>
+
       <PostFilter filter={filter} setFilter={setFilter} />
+
       <Posts remove={removePost} posts={sortedAndSearchedPosts} title='Posts about JS' />
     </main>
   );

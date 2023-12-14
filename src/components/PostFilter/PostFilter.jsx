@@ -14,10 +14,10 @@ export default function PostFilter({ filter, setFilter }) {
       <MySelect
         value={filter.sort}
         onChange={(sortOption) => setFilter({ ...filter, sort: sortOption })}
-        defaultOption={'Сортировка'}
+        defaultOption={'Sort'}
         options={[
-          { text: 'По названию', value: 'title' },
-          { text: 'По тексту', value: 'body' },
+          { text: 'by title', value: 'title' },
+          { text: 'by text', value: 'body' },
         ]}
       />
     </div>

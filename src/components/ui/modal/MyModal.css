@@ -1,0 +1,11 @@
+.modal {
+  @apply hidden justify-center items-center fixed inset-0 bg-black/75;
+}
+
+.modal_active {
+  @apply flex;
+}
+
+.modal__content {
+  @apply flex flex-col w-96 bg-white rounded-lg;
+}

@@ -1,9 +1,9 @@
 .button {
-  @apply px-2 py-1 ml-2 border-2 rounded border-gray-800
+  @apply px-2 py-1 border-2 rounded border-gray-800;
 }
 
 @media (prefers-color-scheme: dark) {
   .button {
-    @apply  border-white
+    @apply border-white;
   }
 }
